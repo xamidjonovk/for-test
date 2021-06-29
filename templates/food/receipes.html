@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+{% load static %}
+{%block content%}
+    <!-- ##### Best Receipe Area Start ##### -->
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>All Receipies</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Single Best Receipe Area -->
+                {% for rec in recipes %}
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="../media/{{rec.image}}" alt="">
+                        <div class="receipe-content">
+                            <a href="{% url 'recipe_post' recipe_id=rec.id %}">
+                                <h5>{{rec.title}}</h5>
+                            </a>
+                            <div class="ratings">
+                                {% for st in stars%}
+                                    {%if st < rec.stars%}
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                {%else%}
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                {%endif%}
+                                {%endfor%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Best Receipe Area End ##### -->
+    {%endblock%}
